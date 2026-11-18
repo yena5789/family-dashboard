@@ -3,10 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light only">
 <meta name="theme-color" content="#fbf6ee">
 <title>🏠 우리 집 가족 대시보드</title>
 <style>
   :root{
+    color-scheme: light only;
     --cream:#fbf6ee;
     --cream-2:#fffdf8;
     --ink:#3b342c;
@@ -20,11 +23,12 @@
     --butter:#f6e6b8;
     --sky:#dfeaf2;
     --rose:#f6dfe0;
+    --lilac:#e9e3f5;
     --shadow:0 10px 30px rgba(120,96,70,.08);
     --radius:22px;
   }
   *{box-sizing:border-box}
-  html,body{margin:0;padding:0}
+  html,body{margin:0;padding:0;color-scheme:light only;background-color:#fbf6ee}
   body{
     font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",system-ui,sans-serif;
     background:
@@ -100,20 +104,30 @@
   .status-pill.late{background:#fdf1cf;color:#856419;border-color:#f2e0ac}
   .status-pill.out{background:var(--sky);color:#3f5f75;border-color:#cfdfec}
   .status-pill.skip{background:#efece7;color:#7d7265;border-color:#e0dad1}
+  .status-pill.unknown{background:#efeaf7;color:#64558a;border-color:#ddd3ee}
   .status-pill:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(120,96,70,.12)}
   .status-pill:active{transform:scale(.97)}
   .hint{margin:13px 0 0;font-size:12.5px;color:var(--ink-soft);font-weight:650}
 
   /* ---------- 분리수거 ---------- */
   .recycle-box{border-radius:16px;padding:14px 15px;border:1px dashed #cbdcbf;background:var(--sage-soft)}
-  .recycle-box.due{background:#e9f1e1}
-  .recycle-box.warn{background:#fdf3d4;border-color:#efdfa9}
+  .recycle-box.due{background:#e5f0d8;border:1px solid #b8d2a2;box-shadow:0 0 0 3px rgba(127,156,119,.16)}
+  .recycle-box.soon{background:#fdeccb;border:1px solid #efcf95}
+  .recycle-box.warn{background:#fdf7e3;border-color:#eee0b6}
   .recycle-box.idle{background:#f1efe9;border-color:#e2dbd0}
   .r-badge{display:inline-block;font-size:11px;font-weight:850;letter-spacing:.02em;padding:3px 9px;border-radius:999px;background:#fff;color:#4a6444;border:1px solid rgba(0,0,0,.05)}
-  .recycle-box.warn .r-badge{color:#856419}
-  .recycle-box.idle .r-badge{color:#7d7265}
-  .r-title{display:block;margin:8px 0 3px;font-size:15.5px;font-weight:850;letter-spacing:-.01em}
+  .recycle-box.due .r-badge{background:#5f8c52;color:#fff;border-color:#5f8c52;font-size:12px;padding:4px 11px}
+  .recycle-box.soon .r-badge{background:#b8791a;color:#fff;border-color:#b8791a;font-size:12.5px;font-weight:900;padding:4px 11px}
+  .recycle-box.warn .r-badge{color:#8a5f13;font-size:12.5px;font-weight:900;padding:4px 11px}
+  .recycle-box.idle .r-badge{color:#5d564d;font-size:12.5px;font-weight:900;padding:4px 11px;border-color:#dcd3c5}
+  .r-title{display:block;margin:8px 0 3px;font-size:15.5px;font-weight:850;letter-spacing:-.01em;line-height:1.35;word-break:keep-all}
+  .recycle-box.due .r-title{font-size:20px;color:#33652c}
+  .recycle-box.soon .r-title{font-size:18px;color:#8a5c0d}
+  .recycle-box.warn .r-title{color:#7a5f1e}
+  .recycle-box.idle .r-title{color:#4f483f}
   .r-desc{margin:0;font-size:12.5px;color:#5f6f58;font-weight:600;word-break:keep-all}
+  .recycle-box.due .r-desc{color:#3f6b36;font-weight:750}
+  .recycle-box.soon .r-desc{color:#7d5a12;font-weight:700}
   .recycle-box.warn .r-desc{color:#7a6220}
   .recycle-box.idle .r-desc{color:#6f675e}
 
@@ -162,6 +176,7 @@
   .m-oh{background:var(--rose);color:#8a4c52}
   .m-kim{background:var(--sky);color:#3f5f75}
   .m-yena{background:var(--butter);color:#856419}
+  .m-eri{background:var(--lilac);color:#64558a}
   .note{font-size:10.5px;font-weight:750;color:#a2968a;background:#f8f4ec;padding:2px 7px;border-radius:999px}
   .icon-btn{
     border:none;background:transparent;color:#c8bfb2;font-size:14px;line-height:1;cursor:pointer;
@@ -282,7 +297,8 @@
     <div class="members">
       <span class="member"><span class="av" style="background:var(--rose)">순</span>오양순<span class="role">엄마</span></span>
       <span class="member"><span class="av" style="background:var(--sky)">철</span>김철<span class="role">아빠</span></span>
-      <span class="member"><span class="av" style="background:var(--butter)">예</span>김예나<span class="role">딸</span></span>
+      <span class="member"><span class="av" style="background:var(--butter)">예</span>김예나<span class="role">첫째</span></span>
+      <span class="member"><span class="av" style="background:var(--lilac)">에</span>에리짱<span class="role">둘째</span></span>
     </div>
   </header>
 
@@ -294,7 +310,7 @@
         <div class="ico">🍽️</div>
         <div>
           <h2 id="dinnerTitle">오늘의 저녁</h2>
-          <p class="sub">상태를 누르면 집 → 늦게 → 외식 → 안 먹음 순서로 바뀌어요</p>
+          <p class="sub">상태를 누르면 집 → 늦게 → 외식 → 안 먹음 → 미정 순서로 바뀌어요</p>
         </div>
       </div>
       <ul class="dinner-list" id="dinnerList"></ul>
@@ -349,6 +365,7 @@
           <option value="오양순" selected>오양순</option>
           <option value="김철">김철</option>
           <option value="김예나">김예나</option>
+          <option value="에리짱">에리짱</option>
         </select>
         <button type="submit" class="btn-primary">추가</button>
       </form>
@@ -381,6 +398,7 @@
         <input type="text" id="groceryInput" placeholder="필요한 품목을 적어 주세요" aria-label="장볼 품목" maxlength="120">
         <select id="groceryWho" aria-label="요청한 사람">
           <option value="김예나" selected>김예나</option>
+          <option value="에리짱">에리짱</option>
           <option value="오양순">오양순</option>
           <option value="김철">김철</option>
           <option value="공통">공통</option>
@@ -472,11 +490,12 @@
     });
   }
   function uid() { return 'i' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
-  var WHO = ['공통', '오양순', '김철', '김예나'];
+  var WHO = ['공통', '오양순', '김철', '김예나', '에리짱'];
   function whoClass(w) {
     if (w === '오양순') return 'm-oh';
     if (w === '김철') return 'm-kim';
     if (w === '김예나') return 'm-yena';
+    if (w === '에리짱') return 'm-eri';
     return 'm-common';
   }
 
@@ -506,14 +525,16 @@
     { key: 'home', icon: '🏠', label: '집에서 식사' },
     { key: 'late', icon: '🌙', label: '늦게라도 집' },
     { key: 'out', icon: '🍽️', label: '외식 예정' },
-    { key: 'skip', icon: '🚫', label: '안 먹음' }
+    { key: 'skip', icon: '🚫', label: '안 먹음' },
+    { key: 'unknown', icon: '❓', label: '미정' }
   ];
   var FAMILY = [
     { id: 'oh', name: '오양순', initial: '순', color: 'var(--rose)' },
     { id: 'kim', name: '김철', initial: '철', color: 'var(--sky)' },
-    { id: 'yena', name: '김예나', initial: '예', color: 'var(--butter)' }
+    { id: 'yena', name: '김예나', initial: '예', color: 'var(--butter)' },
+    { id: 'eri', name: '에리짱', initial: '에', color: 'var(--lilac)' }
   ];
-  var dinnerDefault = { oh: 'home', kim: 'late', yena: 'out' };
+  var dinnerDefault = { oh: 'home', kim: 'late', yena: 'out', eri: 'unknown' };
   var dinnerSaved = load(KEY.dinner + todayStr, null);
   var dinner = {};
   FAMILY.forEach(function (p) {
@@ -535,16 +556,20 @@
     });
     list.innerHTML = html;
 
-    var home = 0, out = 0, skip = 0;
+    var home = 0, out = 0, skip = 0, unknown = 0;
     FAMILY.forEach(function (p) {
-      if (dinner[p.id] === 'home' || dinner[p.id] === 'late') home++;
-      else if (dinner[p.id] === 'out') out++;
+      var v = dinner[p.id];
+      if (v === 'home' || v === 'late') home++;
+      else if (v === 'out') out++;
+      else if (v === 'unknown') unknown++;
       else skip++;
     });
     var parts = ['집에서 ' + home + '명'];
     if (out) parts.push('외식 ' + out + '명');
     if (skip) parts.push('안 먹음 ' + skip + '명');
-    document.getElementById('dinnerSummary').textContent = parts.join(' · ');
+    if (unknown) parts.push('미정 ' + unknown + '명');
+    document.getElementById('dinnerSummary').textContent =
+      parts.join(' · ') + ' (총 ' + FAMILY.length + '명)';
   }
 
   document.getElementById('dinnerList').addEventListener('click', function (e) {
@@ -561,6 +586,7 @@
   });
 
   /* ================= 분리수거 ================= */
+  /* 배출일: 수·일요일 / 마감: 목·월요일 오전 출근길 */
   (function renderRecycle() {
     var box = document.getElementById('recycleBox');
     var badge = document.getElementById('recycleBadge');
@@ -568,31 +594,40 @@
     var descEl = document.getElementById('recycleDesc');
     var tone, badgeText, titleText, descText;
 
-    if (wd === 3) {
-      tone = 'due'; badgeText = '오늘 배출일';
-      titleText = '오늘 분리수거 날';
-      descText = '내일(목) 오전 출근길까지 내놓을 수 있어요.';
-    } else if (wd === 0) {
-      tone = 'due'; badgeText = '오늘 배출일';
-      titleText = '오늘 분리수거 날';
-      descText = '내일(월) 오전 출근길까지 내놓을 수 있어요.';
-    } else if (wd === 4) {
-      tone = 'warn'; badgeText = '마감일';
-      titleText = '오늘 오전까지 내놓는 날';
-      descText = '어제(수)가 배출일이었어요. 오늘 오전 출근길까지 내놓으면 돼요.';
-    } else if (wd === 1) {
-      tone = 'warn'; badgeText = '마감일';
-      titleText = '오늘 오전까지 내놓는 날';
-      descText = '어제(일)가 배출일이었어요. 오늘 오전 출근길까지 내놓으면 돼요.';
+    function nextDue(fromWd) {
+      var toWed = (3 - fromWd + 7) % 7;
+      var toSun = (0 - fromWd + 7) % 7;
+      if (toWed === 0) toWed = 7;
+      if (toSun === 0) toSun = 7;
+      return (toWed <= toSun) ? { gap: toWed, wd: 3 } : { gap: toSun, wd: 0 };
+    }
+    function dueDateLabel(gap) {
+      var d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + gap);
+      return (d.getMonth() + 1) + '월 ' + d.getDate() + '일(' + DAY[d.getDay()] + ')';
+    }
+
+    if (wd === 3 || wd === 0) {
+      /* 배출일 — 오늘 버리세요 */
+      tone = 'due';
+      badgeText = '오늘 배출일';
+      titleText = '🚨 오늘 버리세요!';
+      descText = '내일 오전 출근길에도 잊지 마세요! 내일(' + DAY[(wd + 1) % 7] + ') 오전 출근길까지 내놓으면 돼요.';
+    } else if (wd === 2 || wd === 6) {
+      /* 전날 — D-1 */
+      var nd1 = nextDue(wd);
+      tone = 'soon';
+      badgeText = 'D-1';
+      titleText = '⏰ 내일이에요! (D-1)';
+      descText = '내일(' + DAY[nd1.wd] + ')이 배출일이에요. 내일 오전 출근길까지 내놓으면 돼요.';
     } else {
-      var toWed = (3 - wd + 7) % 7;
-      var toSun = (0 - wd + 7) % 7;
-      var gap, nextWd;
-      if (toWed <= toSun) { gap = toWed; nextWd = 3; } else { gap = toSun; nextWd = 0; }
-      var nextDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + gap);
-      tone = 'idle'; badgeText = ddayLabel(gap);
-      titleText = '다음 배출일은 ' + (gap === 1 ? '내일' : gap + '일 뒤') + ' (' + DAY[nextWd] + '요일)';
-      descText = (nextDate.getMonth() + 1) + '월 ' + nextDate.getDate() + '일 · 다음날 오전 출근길까지 내놓을 수 있어요.';
+      /* 목·월·금 — 다음 배출일까지 D-day */
+      var nd = nextDue(wd);
+      var morning = (wd === 4 || wd === 1);
+      tone = morning ? 'warn' : 'idle';
+      badgeText = 'D-' + nd.gap;
+      titleText = '다음 배출일 ' + DAY[nd.wd] + '요일 · D-' + nd.gap;
+      descText = (morning ? '오늘 오전 출근길까지 배출 가능! ' : '') +
+        dueDateLabel(nd.gap) + ' 밤까지 내놓으면 돼요.';
     }
 
     box.className = 'recycle-box ' + tone;
@@ -641,7 +676,7 @@
   var tasks = normalize(load(KEY.tasks, null), seedTasks);
   var grocery = normalize(load(KEY.grocery, null), seedGrocery);
 
-  var FILTERS = ['전체', '공통', '오양순', '김철', '김예나'];
+  var FILTERS = ['전체', '공통', '오양순', '김철', '김예나', '에리짱'];
   var filter = load(KEY.filter, '전체');
   if (FILTERS.indexOf(filter) < 0) filter = '전체';
 

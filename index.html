@@ -298,7 +298,7 @@
       <span class="member"><span class="av" style="background:var(--rose)">순</span>오양순<span class="role">엄마</span></span>
       <span class="member"><span class="av" style="background:var(--sky)">철</span>김철<span class="role">아빠</span></span>
       <span class="member"><span class="av" style="background:var(--butter)">예</span>김예나<span class="role">첫째</span></span>
-      <span class="member"><span class="av" style="background:var(--lilac)">에</span>에리짱<span class="role">둘째</span></span>
+      <span class="member"><span class="av" style="background:var(--lilac)">리</span>예리<span class="role">둘째</span></span>
     </div>
   </header>
 
@@ -365,7 +365,7 @@
           <option value="오양순" selected>오양순</option>
           <option value="김철">김철</option>
           <option value="김예나">김예나</option>
-          <option value="에리짱">에리짱</option>
+          <option value="예리">예리</option>
         </select>
         <button type="submit" class="btn-primary">추가</button>
       </form>
@@ -398,7 +398,7 @@
         <input type="text" id="groceryInput" placeholder="필요한 품목을 적어 주세요" aria-label="장볼 품목" maxlength="120">
         <select id="groceryWho" aria-label="요청한 사람">
           <option value="김예나" selected>김예나</option>
-          <option value="에리짱">에리짱</option>
+          <option value="예리">예리</option>
           <option value="오양순">오양순</option>
           <option value="김철">김철</option>
           <option value="공통">공통</option>
@@ -490,12 +490,13 @@
     });
   }
   function uid() { return 'i' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
-  var WHO = ['공통', '오양순', '김철', '김예나', '에리짱'];
+  var WHO = ['공통', '오양순', '김철', '김예나', '예리'];
+  var WHO_ALIAS = { '에리짱': '예리' };
   function whoClass(w) {
     if (w === '오양순') return 'm-oh';
     if (w === '김철') return 'm-kim';
     if (w === '김예나') return 'm-yena';
-    if (w === '에리짱') return 'm-eri';
+    if (w === '예리') return 'm-eri';
     return 'm-common';
   }
 
@@ -532,7 +533,7 @@
     { id: 'oh', name: '오양순', initial: '순', color: 'var(--rose)' },
     { id: 'kim', name: '김철', initial: '철', color: 'var(--sky)' },
     { id: 'yena', name: '김예나', initial: '예', color: 'var(--butter)' },
-    { id: 'eri', name: '에리짱', initial: '에', color: 'var(--lilac)' }
+    { id: 'eri', name: '예리', initial: '리', color: 'var(--lilac)' }
   ];
   var dinnerDefault = { oh: 'home', kim: 'late', yena: 'out', eri: 'unknown' };
   var dinnerSaved = load(KEY.dinner + todayStr, null);
@@ -662,10 +663,11 @@
     var out = [];
     list.forEach(function (x) {
       if (!x || typeof x.text !== 'string' || !x.text.trim()) return;
+      var who = WHO_ALIAS[x.who] || x.who;
       out.push({
         id: (typeof x.id === 'string' && /^[A-Za-z0-9_-]{1,40}$/.test(x.id)) ? x.id : uid(),
         text: x.text.slice(0, 160),
-        who: WHO.indexOf(x.who) >= 0 ? x.who : '공통',
+        who: WHO.indexOf(who) >= 0 ? who : '공통',
         done: !!x.done,
         note: (typeof x.note === 'string') ? x.note : ''
       });
@@ -676,7 +678,7 @@
   var tasks = normalize(load(KEY.tasks, null), seedTasks);
   var grocery = normalize(load(KEY.grocery, null), seedGrocery);
 
-  var FILTERS = ['전체', '공통', '오양순', '김철', '김예나', '에리짱'];
+  var FILTERS = ['전체', '공통', '오양순', '김철', '김예나', '예리'];
   var filter = load(KEY.filter, '전체');
   if (FILTERS.indexOf(filter) < 0) filter = '전체';
 

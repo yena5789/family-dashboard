@@ -646,10 +646,7 @@
 
   /* ================= 가족 공동 할 일 ================= */
   var seedTasks = [
-    { id: 't1', text: '분리수거 (다음 배출일: 일요일)', who: '공통', done: false, note: 'D-2' },
-    { id: 't2', text: '21:00 10분 스트레칭 (출근일)', who: '오양순', done: false, note: '오늘 21:00' },
-    { id: 't3', text: '도서 \'박곰희 연금 부자 수업\' 반납', who: '오양순', done: false, note: '~12/4' },
-    { id: 't4', text: '손세정제 주문 결정하기', who: '오양순', done: false, note: '' }
+    { id: 't1', text: '분리수거 (다음 배출일: 일요일)', who: '공통', done: false, note: 'D-2' }
   ];
   var seedGrocery = [
     { id: 'g1', text: '그릭 요거트', who: '김예나', done: true, note: '11/18 주문' },
@@ -853,34 +850,14 @@
 
   /* ================= 다가오는 일정 ================= */
   (function renderSchedule() {
-    var WORK_DAYS = [1, 2, 3, 5];
-    var isWork = WORK_DAYS.indexOf(wd) >= 0;
-    var workChip, workSub;
-    if (isWork) {
-      workChip = '오늘 출근';
-      workSub = '오늘 10:00~15:00 · 굴포천역 프리모';
-    } else {
-      var g = 1;
-      while (WORK_DAYS.indexOf((wd + g) % 7) < 0) g++;
-      workChip = 'D-' + g;
-      workSub = '다음 출근 ' + DAY[(wd + g) % 7] + '요일 10:00~15:00';
-    }
-
-    var items = [
-      {
-        dot: 'sage', title: '출근 · 굴포천역 프리모', sub: workSub,
-        chip: workChip, chipCls: isWork ? 'today' : 'soon'
-      }
-    ];
+    var items = [];
 
     var datedEvents = [
       { date: '2026-11-21', dot: 'butter', title: '경주?', sub: '11/21(토) 08:00~09:00' },
-      { date: '2026-11-22', dot: 'butter', title: '공경희혼사 · 라시따시어터', sub: '11/22(일) 11:00 · 서울 서초구 매헌로 16' },
-      { date: '2026-11-22', dot: '', title: '성당미사', sub: '11/22(일) 17:30' },
-      { date: '2026-11-26', dot: '', title: '노고산미사 독서 · 간식준비', sub: '11/26(목) 14:00 사무엘기종강 · 15:00 간식준비' },
-      { date: '2026-11-27', dot: 'butter', title: '경주어머님생신', sub: '11/27(금) 08:00' },
-      { date: '2026-11-28', dot: '', title: '아일랜드 · 경주가족회비 · 동우회비', sub: '11/28(토) 08:00' },
-      { date: '2026-12-04', dot: '', title: '도서 \'박곰희 연금 부자 수업\' 반납', sub: '마포평생학습관 아현분관' }
+      { date: '2026-11-27', dot: 'butter', title: '경주어머님생신', sub: '11/27(금)' },
+      { date: '2026-11-28', dot: '', title: '경주가족회비', sub: '11/28(토)' },
+      { date: '2026-12-12', dot: 'butter', title: '아버님생신', sub: '12/12(토)' },
+      { date: '2026-12-18', dot: 'sage', title: '예나이사', sub: '12/18(금)' }
     ];
 
     datedEvents.forEach(function (ev) {

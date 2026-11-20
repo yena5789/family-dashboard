@@ -535,7 +535,7 @@
     { id: 'yena', name: '김예나', initial: '예', color: 'var(--butter)' },
     { id: 'eri', name: '예리', initial: '리', color: 'var(--lilac)' }
   ];
-  var dinnerDefault = { oh: 'unknown', kim: 'unknown', yena: 'skip', eri: 'unknown' };
+  var dinnerDefault = { oh: 'unknown', kim: 'unknown', yena: 'unknown', eri: 'unknown' };
   var dinnerSaved = load(KEY.dinner + todayStr, null);
   var dinner = {};
   FAMILY.forEach(function (p) {
@@ -646,7 +646,7 @@
 
   /* ================= 가족 공동 할 일 ================= */
   var seedTasks = [
-    { id: 't1', text: '분리수거 (다음 배출일: 일요일)', who: '공통', done: false, note: 'D-2' }
+    { id: 't1', text: '분리수거 (다음 배출일: 일요일)', who: '공통', done: false, note: 'D-1' }
   ];
   var seedGrocery = [
     { id: 'g1', text: '그릭 요거트', who: '김예나', done: true, note: '11/18 주문' },

@@ -871,16 +871,31 @@
       {
         dot: 'sage', title: '출근 · 굴포천역 프리모', sub: workSub,
         chip: workChip, chipCls: isWork ? 'today' : 'soon'
-      },
-      {
-        dot: 'butter', title: '카카오 톡클라우드 결제일', sub: '월 2,200원 · 해지할지 그 전에 정하기',
-        chip: ddayLabel(daysUntil('2026-11-25')), chipCls: daysUntil('2026-11-25') <= 7 ? 'soon' : ''
-      },
-      {
-        dot: '', title: '도서 \'박곰희 연금 부자 수업\' 반납', sub: '마포평생학습관 아현분관',
-        chip: ddayLabel(daysUntil('2026-12-04')), chipCls: ''
       }
     ];
+
+    var datedEvents = [
+      { date: '2026-11-21', dot: 'butter', title: '경주?', sub: '11/21(토) 08:00~09:00' },
+      { date: '2026-11-22', dot: 'butter', title: '공경희혼사 · 라시따시어터', sub: '11/22(일) 11:00 · 서울 서초구 매헌로 16' },
+      { date: '2026-11-22', dot: '', title: '성당미사', sub: '11/22(일) 17:30' },
+      { date: '2026-11-25', dot: 'butter', title: '카카오 톡클라우드 결제일', sub: '월 2,200원 · 해지할지 그 전에 정하기' },
+      { date: '2026-11-26', dot: '', title: '노고산미사 독서 · 간식준비', sub: '11/26(목) 14:00 사무엘기종강 · 15:00 간식준비' },
+      { date: '2026-11-27', dot: 'butter', title: '경주어머님생신', sub: '11/27(금) 08:00' },
+      { date: '2026-11-28', dot: '', title: '아일랜드 · 경주가족회비 · 동우회비', sub: '11/28(토) 08:00' },
+      { date: '2026-12-04', dot: '', title: '도서 \'박곰희 연금 부자 수업\' 반납', sub: '마포평생학습관 아현분관' }
+    ];
+
+    datedEvents.forEach(function (ev) {
+      var d = daysUntil(ev.date);
+      if (d < 0) return;
+      items.push({
+        dot: ev.dot,
+        title: ev.title,
+        sub: ev.sub,
+        chip: ddayLabel(d),
+        chipCls: d === 0 ? 'today' : (d <= 7 ? 'soon' : '')
+      });
+    });
 
     var html = '';
     items.forEach(function (it) {

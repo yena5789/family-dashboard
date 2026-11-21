@@ -535,7 +535,7 @@
     { id: 'yena', name: '김예나', initial: '예', color: 'var(--butter)' },
     { id: 'eri', name: '예리', initial: '리', color: 'var(--lilac)' }
   ];
-  var dinnerDefault = { oh: 'unknown', kim: 'unknown', yena: 'unknown', eri: 'unknown' };
+  var dinnerDefault = { oh: 'unknown', kim: 'unknown', yena: 'skip', eri: 'skip' };
   var dinnerSaved = load(KEY.dinner + todayStr, null);
   var dinner = {};
   FAMILY.forEach(function (p) {
@@ -653,7 +653,8 @@
     { id: 'g2', text: '그래놀라', who: '김예나', done: true, note: '11/18 주문' },
     { id: 'g3', text: '우삼겹 등 고기류', who: '김예나', done: true, note: '11/18 주문' },
     { id: 'g4', text: '간편식 떡볶이', who: '김예나', done: true, note: '11/18 주문' },
-    { id: 'g5', text: '맛있는 간식/먹거리 (품목 추천 요청)', who: '예리', done: false, note: '11/19 요청' }
+    { id: 'g5', text: '맛있는 간식/먹거리 (품목 추천 요청)', who: '예리', done: false, note: '11/19 요청' },
+    { id: 'g6', text: '주먹밥 같은 류', who: '예리', done: false, note: '11/21 요청' }
   ];
 
   function normalize(list, seed) {
